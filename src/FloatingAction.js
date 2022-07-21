@@ -646,7 +646,10 @@ const styles = StyleSheet.create({
   },
   rightActions: {
     alignItems: "flex-end",
-    right: -1000 // this magic number will make always disspear the text from screen
+    width: Platform.OS === "web" ? 0 : "auto",
+    right: Platform.OS === "web" ? 0 : -1000, // this magic number will make always disspear the text from screen
+    marginRight: Platform.OS === "web" ? 50 : 'auto'
+
   },
   leftActions: {
     alignItems: "flex-start",
@@ -674,12 +677,13 @@ const styles = StyleSheet.create({
     zIndex: 0
   },
   buttonContainer: {
-    overflow: Platform.OS === "ios" ? "visible" : "hidden",
+    overflow: Platform.OS === "ios" || Platform.OS === 'web' ? "visible" : "hidden",
+    display: Platform.OS === 'none' ? 'none' : 'flex',
     zIndex: 2,
     alignItems: "center",
     justifyContent: "center",
     elevation: 5,
-    position: "absolute"
+    position: "absolute",
   },
   button: {
     zIndex: 3,
